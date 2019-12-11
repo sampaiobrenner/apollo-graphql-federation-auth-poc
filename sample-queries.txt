@@ -1,0 +1,81 @@
+# create a sample post
+mutation {
+  createPost(request: {
+    data: {
+      userId: "kek"
+      name: "postName"
+      description: "egDesc"
+    }
+  }){
+    error {
+      status
+      message
+    }
+    success
+  }
+}
+
+#  create a sample user
+mutation{
+  createUser(request: {
+    data: {
+      name: "kek"
+      email: "sircactusfalactus@jelly.com"
+    }
+  })
+  {
+    success
+    error {
+      status
+      message
+    }
+  }
+}
+
+# create sample comment
+mutation {
+  postComment(request: {
+    data: {
+      postId: "kek"
+      userId: "bur"
+      description: "sample desc"
+    }
+  })
+  {
+    success
+    error{
+      status
+      message
+    }
+  }
+}
+
+# fetch all comments belonging to all posts belonging to all users
+query{
+  fetchAllUser {
+    success
+      data {
+        _id
+        name
+        email
+        posts {
+          _id
+          name
+          description
+          comments {
+            _id
+            description
+            user {
+              _id
+              email
+            }
+          }
+        }
+      }
+    error {
+      message
+      status
+    }
+    }
+  }
+

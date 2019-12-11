@@ -1,0 +1,37 @@
+{
+  "name": "apollo-federation-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-gateway": "nodemon --exec babel-node gateway.js",
+    "start-service:user": "nodemon --exec babel-node --config-file ./node_modules/user-service/.babelrc  ./node_modules/user-service/src/index.js",
+    "start-service:post": "nodemon --exec babel-node --config-file ./node_modules/post-service/.babelrc ./node_modules/post-service/src/index.js",
+    "start-service:comment": "nodemon --exec babel-node --config-file ./node_modules/comment-service/.babelrc ./node_modules/comment-service/src/index.js",
+    "start-services": "concurrently \"npm:start-service:*\"",
+    "postinstall": "lerna bootstrap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/gateway": "^0.10.4",
+    "apollo-server": "^2.9.3",
+    "comment-service": "file:./services/CommentService",
+    "concurrently": "^5.0.0",
+    "graphql": "^14.5.4",
+    "jsonwebtoken": "^8.5.1",
+    "package.json": "^2.0.1",
+    "post-service": "file:./services/PostService",
+    "redis": "^2.8.0",
+    "user-service": "file:./services/UserService"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/preset-env": "^7.6.0",
+    "lerna": "^3.19.0",
+    "nodemon": "^1.19.2"
+  }
+}
